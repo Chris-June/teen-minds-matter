@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Header } from '@/components/layout/Header/HeaderExports';
+import { HeaderComponent } from '@/components/layout/Header/HeaderExports';
 import { HomePage } from '@/pages/home/HomePage';
 import { ArticlesPage } from '@/pages/articles/ArticlesPage';
 import { ResourcesPage } from '@/pages/resources/ResourcesPage';
@@ -15,7 +15,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <div className="min-h-screen bg-background">
-          <Header />
+          <HeaderComponent />
           <main>
             <Routes>
               <Route path="/" element={<HomePage />} />

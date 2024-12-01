@@ -1,4 +1,4 @@
-export { default as Header } from './HeaderComponent';
-export * from './Navigation';
-export * from './SearchBar';
-export * from './ThemeToggle';
+export { default as HeaderComponent } from './HeaderComponent';
+export { default as Navigation } from './Navigation';
+export { SearchBar } from './SearchBar';
+export { ThemeToggle } from './ThemeToggle';
