@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Users, MessageSquare, Heart, Trophy } from 'lucide-react';
 import { Button } from '@/components/common/ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 export function CommunityPage() {
+  const navigate = useNavigate();
   return (
     <div className="container mx-auto px-4 pt-20 pb-8">
       <motion.div
@@ -81,7 +83,11 @@ export function CommunityPage() {
                       {Math.floor(Math.random() * 100)} friends chatting
                     </p>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => navigate('/chat')}
+                  >
                     Join In!
                   </Button>
                 </div>

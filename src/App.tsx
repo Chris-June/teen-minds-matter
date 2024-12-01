@@ -1,39 +1,38 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HeaderComponent } from '@/components/layout/Header/HeaderExports';
 import { HomePage } from '@/pages/home/HomePage';
 import { ArticlesPage } from '@/pages/articles/ArticlesPage';
 import { ResourcesPage } from '@/pages/resources/ResourcesPage';
 import { SupportPage } from '@/pages/support/SupportPage';
 import { CommunityPage } from '@/pages/community/CommunityPage';
-import { AboutPage } from '@/pages/about/AboutPage';
-import { StressBustersPage } from '@/pages/guides/StressBusters';
-import { MoodBoostersPage } from '@/pages/guides/MoodBoosters';
-import { FriendDramaPage } from '@/pages/guides/FriendDrama';
+import { ChatPage } from '@/pages/chat/ChatPage';
+import { ChatRoomProvider } from '@/contexts/ChatRoomContext';
 
 const queryClient = new QueryClient();
 
-export default function App() {
+export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="min-h-screen bg-background">
-          <HeaderComponent />
-          <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/articles" element={<ArticlesPage />} />
-              <Route path="/resources" element={<ResourcesPage />} />
-              <Route path="/support" element={<SupportPage />} />
-              <Route path="/community" element={<CommunityPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/guides/stress-busters" element={<StressBustersPage />} />
-              <Route path="/guides/mood-boosters" element={<MoodBoostersPage />} />
-              <Route path="/guides/friend-drama" element={<FriendDramaPage />} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
+      <BrowserRouter>
+        <ChatRoomProvider>
+          <div className="min-h-screen bg-background font-sans antialiased">
+            <HeaderComponent />
+            <main>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/articles" element={<ArticlesPage />} />
+                <Route path="/resources" element={<ResourcesPage />} />
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="/community" element={<CommunityPage />} />
+                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/chat/:roomId" element={<ChatPage />} />
+              </Routes>
+            </main>
+          </div>
+        </ChatRoomProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }

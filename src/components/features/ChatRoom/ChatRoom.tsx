@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/common/ui/Button';
 import { Input } from '@/components/common/ui/Input';
 import { Send, Smile, PaperclipIcon } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/common/ui/dropdown-menu';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/common/ui/alert-dialog';
+import {
+  Menu,
+  Users,
+  Volume2,
+  VolumeX,
+  Shield,
+  Flag,
+  MessageSquare,
+  ExternalLink,
+  LogOut,
+  Settings,
+  HelpCircle,
+} from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -19,6 +50,9 @@ interface ChatRoomProps {
 }
 
 export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
+  const navigate = useNavigate();
+  const [showReportDialog, setShowReportDialog] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
@@ -47,6 +81,15 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
     setNewMessage('');
   };
 
+  const handleReport = () => {
+    setShowReportDialog(false);
+    // TODO: Implement report functionality
+  };
+
+  const handleLeaveRoom = () => {
+    navigate('/chat');
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -64,9 +107,82 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
             <p className="text-sm text-muted-foreground">{description}</p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-              🟢 Online: 42
-            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMuted(!isMuted)}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              {isMuted ? (
+                <VolumeX className="h-5 w-5" />
+              ) : (
+                <Volume2 className="h-5 w-5" />
+              )}
+            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                {/* Room Info */}
+                <DropdownMenuItem className="flex items-center">
+                  <Users className="h-4 w-4 mr-2" />
+                  <span>View Members</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center">
+                  <MessageSquare className="h-4 w-4 mr-2" />
+                  <span>Chat Guidelines</span>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                {/* Safety Features */}
+                <DropdownMenuItem className="flex items-center">
+                  <Shield className="h-4 w-4 mr-2" />
+                  <span>Safety Center</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="flex items-center text-red-600"
+                  onClick={() => setShowReportDialog(true)}
+                >
+                  <Flag className="h-4 w-4 mr-2" />
+                  <span>Report Concern</span>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                {/* Settings & Help */}
+                <DropdownMenuItem className="flex items-center">
+                  <Settings className="h-4 w-4 mr-2" />
+                  <span>Chat Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center">
+                  <HelpCircle className="h-4 w-4 mr-2" />
+                  <span>Get Help</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="flex items-center"
+                  onClick={() => window.open('/resources', '_blank')}
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  <span>Mental Health Resources</span>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                {/* Leave Room */}
+                <DropdownMenuItem 
+                  className="flex items-center text-red-600"
+                  onClick={handleLeaveRoom}
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  <span>Leave Room</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
@@ -133,6 +249,23 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
           Remember: Be kind and respectful! 💝
         </p>
       </form>
+
+      {/* Report Dialog */}
+      <AlertDialog open={showReportDialog} onOpenChange={setShowReportDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Report a Concern</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your safety is our top priority. If you've seen anything that makes you uncomfortable
+              or breaks our community guidelines, please let us know. All reports are confidential.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleReport}>Submit Report</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </motion.div>
   );
 }
