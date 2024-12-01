@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Filter } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/common/ui/Button';
 
 export function ArticlesPage() {
   const [view, setView] = React.useState<'grid' | 'list'>('grid');
@@ -14,6 +14,10 @@ export function ArticlesPage() {
     { id: 'self-care', name: 'Self Care' },
     { id: 'relationships', name: 'Relationships' },
   ];
+
+  const toggleView = () => {
+    setView(view === 'grid' ? 'list' : 'grid');
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -33,6 +37,9 @@ export function ArticlesPage() {
             <Filter className="mr-2 h-4 w-4" />
             Filter
           </Button>
+          <Button onClick={toggleView}>
+            {view === 'grid' ? 'Switch to List' : 'Switch to Grid'}
+          </Button>
         </div>
 
         <div className="mb-8 flex flex-wrap gap-2">
@@ -48,7 +55,7 @@ export function ArticlesPage() {
           ))}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className={view === 'grid' ? 'grid gap-6 md:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-6'}>
           {Array.from({ length: 6 }).map((_, i) => (
             <motion.article
               key={i}

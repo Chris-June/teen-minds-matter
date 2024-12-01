@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Calendar, Users, HeartHandshake } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/common/ui/Button';
 
 export function SupportPage() {
   return (

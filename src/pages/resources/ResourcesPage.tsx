@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Book, Download, ExternalLink, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/common/ui/Button';
 
-export function ResourcesPage() {
+export const ResourcesPage: FC = () => {
   const resources = [
     {
       title: 'Crisis Helpline Information',

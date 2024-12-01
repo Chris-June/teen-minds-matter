@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, MessageSquare, Heart, Trophy } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/common/ui/Button';
 
 export function CommunityPage() {
   return (

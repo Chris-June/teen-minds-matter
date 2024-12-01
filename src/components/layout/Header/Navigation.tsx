@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
@@ -6,7 +5,7 @@ interface NavigationProps {
   className?: string;
 }
 
-export function Navigation({ className }: NavigationProps) {
+export default function Navigation({ className }: NavigationProps) {
   const links = [
     { href: '/articles', label: 'Articles' },
     { href: '/resources', label: 'Resources' },
@@ -14,6 +13,8 @@ export function Navigation({ className }: NavigationProps) {
     { href: '/community', label: 'Community' },
     { href: '/about', label: 'About' },
   ];
+
+  const location = useLocation();
 
   return (
     <nav className={cn('items-center gap-6', className)}>
@@ -23,7 +24,7 @@ export function Navigation({ className }: NavigationProps) {
           to={link.href}
           className={cn(
             'text-sm font-medium transition-colors hover:text-primary',
-            useLocation().pathname === link.href
+            location.pathname === link.href
               ? 'text-primary'
               : 'text-muted-foreground'
           )}

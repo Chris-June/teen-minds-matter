@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, Target, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/common/ui/Button';
 
 export function AboutPage() {
   return (

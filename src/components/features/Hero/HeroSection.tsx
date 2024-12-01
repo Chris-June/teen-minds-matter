@@ -1,10 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/common/ui/Button';
 import { NewsletterForm } from './NewsletterForm';
 import { Heart, Users } from 'lucide-react';
 
-export function Hero() {
+export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-background to-background/95 py-24">
       <div className="container relative mx-auto px-4">
