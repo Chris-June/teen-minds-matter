@@ -7,27 +7,38 @@ import { ResourcesPage } from '@/pages/resources/ResourcesPage';
 import { SupportPage } from '@/pages/support/SupportPage';
 import { CommunityPage } from '@/pages/community/CommunityPage';
 import { AboutPage } from '@/pages/about/AboutPage';
+import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
 const queryClient = new QueryClient();
 
+// Configure router with future flags
+const router = {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }
+};
+
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="min-h-screen bg-background">
-          <HeaderComponent />
-          <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/articles" element={<ArticlesPage />} />
-              <Route path="/resources" element={<ResourcesPage />} />
-              <Route path="/support" element={<SupportPage />} />
-              <Route path="/community" element={<CommunityPage />} />
-              <Route path="/about" element={<AboutPage />} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <Router {...router}>
+          <div className="min-h-screen bg-background">
+            <HeaderComponent />
+            <main>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/articles" element={<ArticlesPage />} />
+                <Route path="/resources" element={<ResourcesPage />} />
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="/community" element={<CommunityPage />} />
+                <Route path="/about" element={<AboutPage />} />
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }

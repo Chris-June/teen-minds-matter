@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/common/ui/Button';
 
 export const LandingCTA: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    navigate('/signup');
+  };
+
+  const handleLearnMoreClick = () => {
+    navigate('/about');
+  };
+
   return (
     <section className="py-24 bg-primary/10">
       <div className="container mx-auto px-4">
@@ -13,18 +24,20 @@ export const LandingCTA: React.FC = () => {
             Join our community today and take the first step towards better mental health.
           </p>
           <div className="flex justify-center gap-4">
-            <Link
-              to="/signup"
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+            <Button
+              variant="default"
+              size="lg"
+              onClick={handleGetStartedClick}
             >
               Get Started
-            </Link>
-            <Link
-              to="/about"
-              className="px-8 py-3 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-lg transition-colors"
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={handleLearnMoreClick}
             >
               Learn More
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

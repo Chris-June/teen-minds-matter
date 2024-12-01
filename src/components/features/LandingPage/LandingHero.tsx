@@ -1,35 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/common/ui/Button';
 
-export const LandingHero: React.FC = () => {
+export function LandingHero() {
+  const navigate = useNavigate();
+
+  const handleResourcesClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    navigate('/resources');
+  };
+
+  const handleCommunityClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    navigate('/community');
+  };
+
   return (
-    <section className="relative bg-gradient-to-b from-primary/10 to-background pt-32 pb-16">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background">
+      <div className="container mx-auto px-4 py-32">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
             Supporting Teen Mental Health
-            <span className="text-primary block mt-2">Together</span>
+            <span className="block mt-2 text-primary">Together</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mb-8">
-            A safe space for teens, parents, and professionals to connect, learn, and support each other through mental health journeys.
+          
+          <p className="mb-8 text-lg text-muted-foreground sm:text-xl">
+            A safe space for teens, parents, and professionals to connect, learn, 
+            and support each other through mental health journeys.
           </p>
-          <div className="flex gap-4">
-            <Link
-              to="/resources"
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Button
+              type="button"
+              variant="default"
+              size="lg"
+              onClick={handleResourcesClick}
+              className="w-full sm:w-auto"
             >
               Find Resources
-            </Link>
-            <Link
-              to="/community"
-              className="px-6 py-3 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-lg transition-colors"
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              onClick={handleCommunityClick}
+              className="w-full sm:w-auto"
             >
               Join Community
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
-};
+}
