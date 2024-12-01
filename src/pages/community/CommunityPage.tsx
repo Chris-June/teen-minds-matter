@@ -90,20 +90,57 @@ export function CommunityPage() {
           </div>
 
           <div className="rounded-lg border bg-card p-6">
-            <h2 className="mb-4 text-2xl font-semibold">Community Rules 🤝</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-semibold">Community Rules 🤝</h2>
+              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Important!</span>
+            </div>
             <div className="space-y-4">
               <p className="text-muted-foreground">
-                Our community is all about being kind and supporting each other! 
-                Here's how we keep things fun and safe for everyone:
+                Our community is a safe space where everyone belongs! Here's how we 
+                keep things awesome for all our amazing members:
               </p>
-              <ul className="ml-6 list-disc space-y-2 text-muted-foreground">
-                <li>Be kind and friendly to everyone 😊</li>
-                <li>Keep private stuff private 🔒</li>
-                <li>No bullying or mean comments ❌</li>
-                <li>Tell us if something doesn't feel right 🚨</li>
-                <li>Share the good vibes! ✨</li>
-              </ul>
-              <Button className="mt-4 w-full">See All Rules</Button>
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <h3 className="font-medium">Be Kind & Respectful 💝</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>Treat everyone with kindness and respect 🌟</li>
+                    <li>Celebrate our differences - they make us special! 🌈</li>
+                    <li>Use friendly language that makes everyone feel welcome 😊</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-medium">Stay Safe Online 🛡️</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>Keep your personal info private 🔒</li>
+                    <li>Never share passwords or contact details ⚠️</li>
+                    <li>Tell a trusted adult if something feels wrong 🚨</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-medium">Support Each Other 🤗</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>Listen to others with an open mind and heart 👂</li>
+                    <li>Share positive vibes and encouragement ✨</li>
+                    <li>Help others feel included in conversations 💭</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-medium">Keep it Friendly 🌺</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>No bullying, hate speech, or mean comments ❌</li>
+                    <li>Respect everyone's background and culture 🌍</li>
+                    <li>Think before you post - would it make someone smile? 😊</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="pt-4">
+                <Button className="w-full">
+                  See Full Community Guidelines
+                </Button>
+              </div>
             </div>
           </div>
         </div>
