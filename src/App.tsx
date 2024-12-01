@@ -7,6 +7,9 @@ import { ResourcesPage } from '@/pages/resources/ResourcesPage';
 import { SupportPage } from '@/pages/support/SupportPage';
 import { CommunityPage } from '@/pages/community/CommunityPage';
 import { AboutPage } from '@/pages/about/AboutPage';
+import { StressBustersPage } from '@/pages/guides/StressBusters';
+import { MoodBoostersPage } from '@/pages/guides/MoodBoosters';
+import { FriendDramaPage } from '@/pages/guides/FriendDrama';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ export default function App() {
               <Route path="/support" element={<SupportPage />} />
               <Route path="/community" element={<CommunityPage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/guides/stress-busters" element={<StressBustersPage />} />
+              <Route path="/guides/mood-boosters" element={<MoodBoostersPage />} />
+              <Route path="/guides/friend-drama" element={<FriendDramaPage />} />
             </Routes>
           </main>
         </div>

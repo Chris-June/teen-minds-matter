@@ -55,15 +55,15 @@ export const ResourcesPage: FC = () => {
         links: [
           {
             title: "Stress-Busting Activities",
-            url: "#"
+            url: "/guides/stress-busters"
           },
           {
             title: "Mood Boosters Guide",
-            url: "#"
+            url: "/guides/mood-boosters"
           },
           {
             title: "Friend Drama Solutions",
-            url: "#"
+            url: "/guides/friend-drama"
           }
         ]
       }
