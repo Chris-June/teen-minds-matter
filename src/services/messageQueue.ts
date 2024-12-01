@@ -11,15 +11,15 @@ interface QueuedMessage {
   processingDelay?: number;
 }
 
-export class MessageQueueService {
+class MessageQueueService {
   private messageQueue: Map<string, QueuedMessage[]>;
   private processing: Map<string, boolean>;
-  private contextWindow: number;
+  private onMessageProcessed: (roomId: string, message: QueuedMessage) => void;
 
-  constructor(contextWindow: number = 10) {
+  constructor() {
     this.messageQueue = new Map();
     this.processing = new Map();
-    this.contextWindow = contextWindow;
+    this.onMessageProcessed = () => {};
   }
 
   /**
@@ -72,7 +72,6 @@ export class MessageQueueService {
         await new Promise(resolve => setTimeout(resolve, message.processingDelay));
       }
 
-      // Emit message processed event
       this.onMessageProcessed(roomId, message);
     }
 
@@ -80,11 +79,10 @@ export class MessageQueueService {
   }
 
   /**
-   * Get the conversation context for a room
+   * Set the message processed callback
    */
-  getContext(roomId: string): QueuedMessage[] {
-    return (this.messageQueue.get(roomId) || [])
-      .slice(-this.contextWindow);
+  setMessageCallback(callback: (roomId: string, message: QueuedMessage) => void): void {
+    this.onMessageProcessed = callback;
   }
 
   /**
@@ -93,22 +91,6 @@ export class MessageQueueService {
   clearQueue(roomId: string): void {
     this.messageQueue.delete(roomId);
     this.processing.delete(roomId);
-  }
-
-  /**
-   * Event handler for processed messages
-   * This should be overridden by the consumer
-   */
-  onMessageProcessed(roomId: string, message: QueuedMessage): void {
-    // Default implementation - override this
-    console.log(`Message processed in room ${roomId}:`, message);
-  }
-
-  /**
-   * Set the message processed callback
-   */
-  setMessageCallback(callback: (roomId: string, message: QueuedMessage) => void): void {
-    this.onMessageProcessed = callback;
   }
 }
 
