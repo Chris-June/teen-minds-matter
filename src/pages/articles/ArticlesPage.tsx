@@ -8,11 +8,12 @@ export function ArticlesPage() {
   const [category, setCategory] = React.useState<string>('all');
 
   const categories = [
-    { id: 'all', name: 'All Articles' },
-    { id: 'anxiety', name: 'Anxiety' },
-    { id: 'depression', name: 'Depression' },
-    { id: 'self-care', name: 'Self Care' },
-    { id: 'relationships', name: 'Relationships' },
+    { id: 'all', name: 'All Stories' },
+    { id: 'friends', name: 'Friend Stuff' },
+    { id: 'school', name: 'School Life' },
+    { id: 'family', name: 'Family & Home' },
+    { id: 'feelings', name: 'Your Feelings' },
+    { id: 'confidence', name: 'Being You' },
   ];
 
   const toggleView = () => {
@@ -20,7 +21,7 @@ export function ArticlesPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pt-20 pb-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -28,18 +29,20 @@ export function ArticlesPage() {
       >
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="mb-2 text-4xl font-bold">Articles</h1>
+            <h1 className="mb-2 text-4xl font-bold">Your Space 🌟</h1>
             <p className="text-muted-foreground">
-              Explore our collection of articles on mental health and wellness
+              Check out stories and tips from teens just like you!
             </p>
           </div>
-          <Button variant="outline" size="sm" className="hidden md:flex">
-            <Filter className="mr-2 h-4 w-4" />
-            Filter
-          </Button>
-          <Button onClick={toggleView}>
-            {view === 'grid' ? 'Switch to List' : 'Switch to Grid'}
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" className="hidden md:flex">
+              <Filter className="mr-2 h-4 w-4" />
+              Show Me
+            </Button>
+            <Button onClick={toggleView}>
+              {view === 'grid' ? '📱 List View' : '📱 Grid View'}
+            </Button>
+          </div>
         </div>
 
         <div className="mb-8 flex flex-wrap gap-2">
