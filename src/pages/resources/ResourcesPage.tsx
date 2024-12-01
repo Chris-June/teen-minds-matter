@@ -1,9 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Book, Download, ExternalLink, Phone } from 'lucide-react';
 import { Button } from '@/components/common/ui/Button';
+import { ResourceModal } from '@/components/features/Resources/ResourceModal';
 
 export const ResourcesPage: FC = () => {
+  const [selectedResource, setSelectedResource] = useState<number | null>(null);
+
   const resources = [
     {
       title: 'Need Someone to Talk To? 🗣️',
@@ -11,6 +14,29 @@ export const ResourcesPage: FC = () => {
       icon: Phone,
       link: '#',
       type: 'emergency',
+      content: {
+        description: "Sometimes we all need someone to talk to, and that's totally okay! Here are some awesome people who are ready to listen and chat with you about anything that's on your mind.",
+        tips: [
+          "It's okay to feel nervous about reaching out - everyone does at first!",
+          "You can start with text chat if talking on the phone feels too much",
+          "These people are here just for you - no problem is too big or small",
+          "You can talk about anything - school, friends, family, or just life in general"
+        ],
+        links: [
+          {
+            title: "Kids Help Phone - Call or Text 24/7",
+            url: "https://kidshelpphone.ca"
+          },
+          {
+            title: "Youth Line - Chat with Other Teens",
+            url: "https://www.youthline.ca"
+          },
+          {
+            title: "Teen Talk - Online Chat Support",
+            url: "https://www.teentalk.ca"
+          }
+        ]
+      }
     },
     {
       title: 'Cool Tips & Tricks 📚',
@@ -18,6 +44,29 @@ export const ResourcesPage: FC = () => {
       icon: Book,
       link: '#',
       type: 'guide',
+      content: {
+        description: "Life can be tricky sometimes, but we've got some super helpful tips and tricks that can make things a bit easier. These are tried and tested by other teens just like you!",
+        tips: [
+          "Try the 5-4-3-2-1 game when feeling worried (5 things you see, 4 you feel...)",
+          "Deep breathing is like a superpower - it really works!",
+          "Writing down your thoughts can help clear your mind",
+          "Moving your body (even just dancing in your room!) can boost your mood"
+        ],
+        links: [
+          {
+            title: "Stress-Busting Activities",
+            url: "#"
+          },
+          {
+            title: "Mood Boosters Guide",
+            url: "#"
+          },
+          {
+            title: "Friend Drama Solutions",
+            url: "#"
+          }
+        ]
+      }
     },
     {
       title: 'Fun Activities 🎯',
@@ -25,7 +74,30 @@ export const ResourcesPage: FC = () => {
       icon: Download,
       link: '#',
       type: 'workbook',
-    },
+      content: {
+        description: "Who says feeling better can't be fun? We've got tons of cool activities that you can try alone or with friends. These aren't boring exercises - they're actually fun!",
+        tips: [
+          "Try the happiness scavenger hunt - find 5 things that make you smile",
+          "Create a feel-good playlist with your favorite upbeat songs",
+          "Start a gratitude jar - add one good thing each day",
+          "Draw or doodle your feelings - no art skills needed!"
+        ],
+        links: [
+          {
+            title: "Download Fun Activity Pack",
+            url: "#"
+          },
+          {
+            title: "Mood Journal Templates",
+            url: "#"
+          },
+          {
+            title: "Creative Projects for Teens",
+            url: "#"
+          }
+        ]
+      }
+    }
   ];
 
   return (
@@ -47,10 +119,11 @@ export const ResourcesPage: FC = () => {
           {resources.map((resource, i) => (
             <motion.div
               key={i}
-              className="rounded-lg border bg-card p-6"
+              className="rounded-lg border bg-card p-6 cursor-pointer hover:border-primary/50 transition-colors"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
+              onClick={() => setSelectedResource(i)}
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <resource.icon className="h-6 w-6 text-primary" />
@@ -83,7 +156,15 @@ export const ResourcesPage: FC = () => {
             </Button>
           </div>
         </div>
+
+        {selectedResource !== null && (
+          <ResourceModal
+            isOpen={selectedResource !== null}
+            onClose={() => setSelectedResource(null)}
+            resource={resources[selectedResource]}
+          />
+        )}
       </motion.div>
     </div>
   );
-}
+};
