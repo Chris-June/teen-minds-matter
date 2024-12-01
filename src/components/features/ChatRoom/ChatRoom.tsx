@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/common/ui/Button';
 import { Input } from '@/components/common/ui/Input';
-import { Send, Smile, PaperclipIcon } from 'lucide-react';
+import { Send, Smile, PaperclipIcon, Bot } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +41,7 @@ interface Message {
   sender: string;
   timestamp: Date;
   isCurrentUser: boolean;
+  isAI?: boolean;
 }
 
 interface ChatRoomProps {
@@ -53,9 +54,9 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
   const navigate = useNavigate();
   const [showReportDialog, setShowReportDialog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [inputMessage, setInputMessage] = useState('');
   const [messages, setMessages] = React.useState<Message[]>([]);
-  const [newMessage, setNewMessage] = React.useState('');
-  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -67,18 +68,18 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newMessage.trim()) return;
+    if (!inputMessage.trim()) return;
 
     const message: Message = {
       id: Date.now().toString(),
-      content: newMessage,
+      content: inputMessage,
       sender: 'Current User', // This will be replaced with actual user data
       timestamp: new Date(),
       isCurrentUser: true,
     };
 
     setMessages([...messages, message]);
-    setNewMessage('');
+    setInputMessage('');
   };
 
   const handleReport = () => {
@@ -91,12 +92,7 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="flex h-[calc(100vh-5rem)] flex-col bg-background"
-    >
+    <div className="flex h-screen flex-col bg-background">
       {/* Chat Room Header */}
       <div className="border-b bg-card px-4 py-3">
         <div className="flex items-center justify-between">
@@ -188,32 +184,65 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${
-              message.isCurrentUser ? 'justify-end' : 'justify-start'
-            }`}
-          >
-            <div
-              className={`max-w-[70%] rounded-lg px-4 py-2 ${
-                message.isCurrentUser
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted'
-              }`}
+      <div className="flex-1 overflow-y-auto p-4">
+        <div className="space-y-4">
+          {messages.map((message) => (
+            <motion.div
+              key={message.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`flex ${message.isCurrentUser ? 'justify-end' : 'justify-start'}`}
             >
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium">{message.sender}</span>
-                <span className="text-xs opacity-50">
-                  {message.timestamp.toLocaleTimeString()}
-                </span>
+              <div
+                className={`
+                  rounded-lg px-4 py-2 max-w-[70%]
+                  ${message.isCurrentUser 
+                    ? 'bg-primary text-primary-foreground' 
+                    : message.isAI 
+                      ? 'bg-secondary/50 text-secondary-foreground border border-secondary' 
+                      : 'bg-muted text-muted-foreground'
+                  }
+                `}
+              >
+                {!message.isCurrentUser && (
+                  <div className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
+                    {message.isAI && (
+                      <div className="flex items-center gap-1">
+                        <Bot className="h-3 w-3" />
+                        <span>AI Assistant</span>
+                      </div>
+                    )}
+                    {!message.isAI && <span>{message.sender}</span>}
+                  </div>
+                )}
+                <p>{message.content}</p>
+                <div className="text-xs opacity-70 mt-1">
+                  {new Date(message.timestamp).toLocaleTimeString()}
+                </div>
               </div>
-              <p>{message.content}</p>
+            </motion.div>
+          ))}
+          
+          {/* AI Typing Indicator */}
+          {/* <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-start"
+          >
+            <div className="bg-secondary/50 text-secondary-foreground border border-secondary rounded-lg px-4 py-2">
+              <div className="flex items-center gap-2">
+                <Bot className="h-3 w-3" />
+                <div className="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
+          </motion.div> */}
+          
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
       {/* Message Input */}
@@ -236,8 +265,8 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
             <PaperclipIcon className="h-5 w-5" />
           </Button>
           <Input
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Type your message..."
             className="flex-1"
           />
@@ -266,6 +295,6 @@ export function ChatRoom({ roomName, roomEmoji, description }: ChatRoomProps) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </motion.div>
+    </div>
   );
 }
