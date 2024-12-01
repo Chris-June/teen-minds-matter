@@ -1,11 +1,17 @@
-import Hero from '@/components/features/Hero/HeroSection';
+import {
+  LandingHero,
+  LandingFeatures,
+  LandingCTA,
+} from '@/components/features/LandingPage/LandingExports';
 import { BlogGrid } from '@/components/features/BlogGrid/BlogGridExports';
 
 export function HomePage() {
   return (
-    <>
-      <Hero />
+    <div className="min-h-screen bg-background">
+      <LandingHero />
+      <LandingFeatures />
       <BlogGrid />
-    </>
+      <LandingCTA />
+    </div>
   );
 }
