@@ -1,19 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Filter } from 'lucide-react';
+import { Filter, Star, Heart, Users, Smile, Home, School } from 'lucide-react';
 import { Button } from '@/components/common/ui/Button';
+import { ArticleGrid } from '@/components/features/Articles/ArticleGrid';
+import { articles } from '@/data/articles';
+import { ArticleCategory } from '@/types/article';
 
 export function ArticlesPage() {
   const [view, setView] = React.useState<'grid' | 'list'>('grid');
-  const [category, setCategory] = React.useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = React.useState<ArticleCategory>('all');
 
   const categories = [
-    { id: 'all', name: 'All Articles' },
-    { id: 'anxiety', name: 'Anxiety' },
-    { id: 'depression', name: 'Depression' },
-    { id: 'self-care', name: 'Self Care' },
-    { id: 'relationships', name: 'Relationships' },
-  ];
+    { id: 'all', name: 'All Stories', icon: Star },
+    { id: 'friends', name: 'Friends & Fun', icon: Users },
+    { id: 'mood', name: 'Feel Good', icon: Smile },
+    { id: 'school', name: 'School Life', icon: School },
+    { id: 'family', name: 'Family Stuff', icon: Home },
+    { id: 'confidence', name: 'Be Yourself', icon: Heart },
+  ] as const;
+
+  const filteredArticles = React.useMemo(() => {
+    if (selectedCategory === 'all') return articles;
+    return articles.filter(article => article.category === selectedCategory);
+  }, [selectedCategory]);
 
   const toggleView = () => {
     setView(view === 'grid' ? 'list' : 'grid');
@@ -28,70 +37,38 @@ export function ArticlesPage() {
       >
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="mb-2 text-4xl font-bold">Articles</h1>
+            <h1 className="mb-2 text-4xl font-bold">Cool Stories For You 📚</h1>
             <p className="text-muted-foreground">
-              Explore our collection of articles on mental health and wellness
+              Find awesome tips and stories from people just like you!
             </p>
           </div>
-          <Button variant="outline" size="sm" className="hidden md:flex">
-            <Filter className="mr-2 h-4 w-4" />
-            Filter
-          </Button>
-          <Button onClick={toggleView}>
-            {view === 'grid' ? 'Switch to List' : 'Switch to Grid'}
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" className="hidden md:flex">
+              <Filter className="mr-2 h-4 w-4" />
+              Show Me
+            </Button>
+            <Button onClick={toggleView} size="sm">
+              {view === 'grid' ? '📱 List View' : '📱 Grid View'}
+            </Button>
+          </div>
         </div>
 
         <div className="mb-8 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <Button
               key={cat.id}
-              variant={category === cat.id ? 'default' : 'outline'}
+              variant={selectedCategory === cat.id ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setCategory(cat.id)}
+              onClick={() => setSelectedCategory(cat.id as ArticleCategory)}
+              className="flex items-center gap-2"
             >
+              <cat.icon className="h-4 w-4" />
               {cat.name}
             </Button>
           ))}
         </div>
 
-        <div className={view === 'grid' ? 'grid gap-6 md:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-6'}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <motion.article
-              key={i}
-              className="group relative overflow-hidden rounded-lg border bg-card"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <div className="aspect-video w-full overflow-hidden">
-                <img
-                  src={`https://source.unsplash.com/random/800x600?mental+health&sig=${i}`}
-                  alt="Article thumbnail"
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                    Mental Health
-                  </span>
-                  <span className="text-xs text-muted-foreground">5 min read</span>
-                </div>
-                <h2 className="mb-2 text-xl font-semibold">
-                  Understanding Teenage Anxiety in the Digital Age
-                </h2>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  Learn about the impact of social media and digital technology on teenage mental health...
-                </p>
-                <Button variant="link" className="p-0">
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  Read More
-                </Button>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        <ArticleGrid articles={filteredArticles} view={view} />
       </motion.div>
     </div>
   );

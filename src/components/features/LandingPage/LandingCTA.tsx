@@ -18,10 +18,12 @@ export const LandingCTA: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Ready to Start Your Journey?
+            Ready to Start Your Journey? 
+            <span className="block text-primary mt-2">You've Got This! 💪</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Join our community today and take the first step towards better mental health.
+            Join thousands of amazing people just like you who are discovering 
+            their strength and creating positive vibes every day!
           </p>
           <div className="flex justify-center gap-4">
             <Button
@@ -29,14 +31,14 @@ export const LandingCTA: React.FC = () => {
               size="lg"
               onClick={handleGetStartedClick}
             >
-              Get Started
+              Get Started - It's Free!
             </Button>
             <Button
               variant="outline"
               size="lg"
               onClick={handleLearnMoreClick}
             >
-              Learn More
+              See What's Possible
             </Button>
           </div>
         </div>

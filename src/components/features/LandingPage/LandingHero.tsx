@@ -20,13 +20,14 @@ export function LandingHero() {
       <div className="container mx-auto px-4 py-32">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-            Supporting Teen Mental Health
-            <span className="block mt-2 text-primary">Together</span>
+            Your Space to Grow
+            <span className="block mt-2 text-primary">and Thrive</span>
           </h1>
           
           <p className="mb-8 text-lg text-muted-foreground sm:text-xl">
-            A safe space for teens, parents, and professionals to connect, learn, 
-            and support each other through mental health journeys.
+            A friendly community where you can be yourself, share your journey, 
+            and find support when you need it most. Because everyone deserves 
+            to feel awesome! 🌟
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -37,7 +38,7 @@ export function LandingHero() {
               onClick={handleResourcesClick}
               className="w-full sm:w-auto"
             >
-              Find Resources
+              Explore Resources
             </Button>
             <Button
               type="button"
@@ -46,7 +47,7 @@ export function LandingHero() {
               onClick={handleCommunityClick}
               className="w-full sm:w-auto"
             >
-              Join Community
+              Join Our Community
             </Button>
           </div>
         </div>

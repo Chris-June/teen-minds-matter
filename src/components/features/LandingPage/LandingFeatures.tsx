@@ -15,66 +15,66 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    title: 'Professional Resources',
-    description: 'Access curated mental health resources and expert guidance.',
-    icon: '📚',
+    title: 'Cool Resources',
+    description: 'Find helpful tools and tips that actually work for you.',
+    icon: '🎯',
     details: {
-      what: 'Our professional resources include evidence-based materials, therapeutic tools, and expert-reviewed content specifically designed for teenagers.',
-      why: 'Accessing reliable mental health resources is crucial during teenage years when many emotional and psychological changes occur.',
+      what: 'A collection of fun and practical resources designed specifically for you - from quick mood boosters to stress-busting techniques that fit your lifestyle.',
+      why: 'Life can be overwhelming sometimes, and having the right tools makes a huge difference. These resources are like having a personal toolkit for your wellbeing!',
       benefits: [
-        'Evidence-based coping strategies',
-        'Self-assessment tools',
-        'Downloadable worksheets and guides',
-        'Recommended reading materials',
-        'Crisis support information'
+        'Quick tips for tough moments',
+        'Fun activities to boost your mood',
+        'Practical guides you can actually use',
+        'Relatable stories from others like you',
+        'Crisis help when you need it'
       ]
     }
   },
   {
-    title: 'Safe Community',
-    description: 'Connect with peers in a moderated, supportive environment.',
-    icon: '🤝',
+    title: 'Your Community',
+    description: 'Connect with others who get what you\'re going through.',
+    icon: '✨',
     details: {
-      what: 'Our moderated community platform allows teens to connect with peers who understand their experiences in a safe, supervised environment.',
-      why: 'Peer support and understanding are vital for mental health, especially during teenage years when many feel isolated or misunderstood.',
+      what: 'A friendly space where you can meet people your age who understand what you\'re feeling. Share stories, make friends, and support each other.',
+      why: 'Sometimes it helps to know you\'re not alone. Here, you can be yourself and connect with others who really get it.',
       benefits: [
-        '24/7 moderated discussions',
-        'Age-appropriate peer groups',
-        'Anonymous support options',
-        'Guided group discussions',
-        'Community events and challenges'
+        'Make real connections',
+        'Chat with people your age',
+        'Share your story (if you want to)',
+        'Join fun group activities',
+        'Be part of something positive'
       ]
     }
   },
   {
-    title: 'Expert Support',
-    description: 'Get advice from mental health professionals and counselors.',
-    icon: '💡',
+    title: 'Expert Friends',
+    description: 'Chat with friendly professionals who are here to help.',
+    icon: '🤗',
     details: {
-      what: 'Access to licensed mental health professionals who specialize in adolescent psychology and teenage mental health concerns.',
-      why: 'Professional guidance is essential for addressing mental health challenges effectively and developing healthy coping mechanisms.',
+      what: 'Connect with caring professionals who specialize in helping young people. They\'re like having a wise friend who really knows their stuff!',
+      why: 'Sometimes you need someone who can offer solid advice and support. Our experts are friendly, understanding, and here for you.',
       benefits: [
-        'Licensed therapist consultations',
-        'Regular check-ins',
-        'Crisis intervention support',
-        'Family counseling options',
-        'Specialized youth counselors'
+        'Talk to someone who gets it',
+        'Get personalized advice',
+        'Quick support when you need it',
+        'Family support options',
+        'Judgment-free zone'
       ]
     }
   },
   {
-    title: 'Educational Content',
-    description: 'Learn about mental health through articles and workshops.',
-    icon: '📖',
+    title: 'Learn & Grow',
+    description: 'Discover cool ways to understand yourself better.',
+    icon: '🌱',
     details: {
-      what: 'Comprehensive educational resources about mental health, emotional well-being, and personal development tailored for teenagers.',
-      why: 'Understanding mental health is the first step toward better emotional well-being and developing healthy coping strategies.',
+      what: 'Fun and interactive ways to learn about mental wellness, emotions, and personal growth - designed to fit into your life.',
+      why: 'Understanding yourself better is pretty awesome! These resources help you grow stronger and feel more confident.',
       benefits: [
-        'Interactive workshops',
-        'Video courses',
-        'Mental health awareness programs',
-        'Skill-building exercises',
-        'Parent education resources'
+        'Fun interactive sessions',
+        'Watch & learn videos',
+        'Cool wellness challenges',
+        'Practice new skills',
+        'Tips for talking to parents'
       ]
     }
   }
@@ -138,7 +138,7 @@ export function LandingFeatures() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">
-          Supporting Your Mental Health Journey
+          Your Journey to Feeling Awesome
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature) => (

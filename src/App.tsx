@@ -8,6 +8,7 @@ import { SupportPage } from '@/pages/support/SupportPage';
 import { CommunityPage } from '@/pages/community/CommunityPage';
 import { AboutPage } from '@/pages/about/AboutPage';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
+import { ToastProvider, ToastViewport } from '@/components/common/ui/Toast';
 
 const queryClient = new QueryClient();
 
@@ -23,21 +24,24 @@ export default function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Router {...router}>
-          <div className="min-h-screen bg-background">
-            <HeaderComponent />
-            <main>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/articles" element={<ArticlesPage />} />
-                <Route path="/resources" element={<ResourcesPage />} />
-                <Route path="/support" element={<SupportPage />} />
-                <Route path="/community" element={<CommunityPage />} />
-                <Route path="/about" element={<AboutPage />} />
-              </Routes>
-            </main>
-          </div>
-        </Router>
+        <ToastProvider>
+          <Router {...router}>
+            <div className="min-h-screen bg-background">
+              <HeaderComponent />
+              <main>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/articles" element={<ArticlesPage />} />
+                  <Route path="/resources" element={<ResourcesPage />} />
+                  <Route path="/support" element={<SupportPage />} />
+                  <Route path="/community" element={<CommunityPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                </Routes>
+              </main>
+            </div>
+          </Router>
+          <ToastViewport />
+        </ToastProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );
