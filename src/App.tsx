@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HeaderComponent } from '@/components/layout/Header/HeaderExports';
 import { HomePage } from '@/pages/home/HomePage';
 import { ArticlesPage } from '@/pages/articles/ArticlesPage';
@@ -25,7 +26,7 @@ export default function App() {
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <Router {...router}>
+          <BrowserRouter future={router.future}>
             <div className="min-h-screen bg-background">
               <HeaderComponent />
               <main>
@@ -39,7 +40,7 @@ export default function App() {
                 </Routes>
               </main>
             </div>
-          </Router>
+          </BrowserRouter>
           <ToastViewport />
         </ToastProvider>
       </QueryClientProvider>

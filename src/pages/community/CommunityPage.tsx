@@ -1,20 +1,22 @@
 import { motion } from 'framer-motion';
 import { Users, MessageSquare, Heart, Trophy } from 'lucide-react';
 import { Button } from '@/components/common/ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 export function CommunityPage() {
+  const navigate = useNavigate();
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pt-20 pb-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold">Join Our Community</h1>
+          <h1 className="mb-4 text-4xl font-bold">Your Awesome Community! 🌟</h1>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Connect with peers, share experiences, and support each other in a
-            safe and moderated environment.
+            Meet new friends, share what's on your mind, and hang out with other amazing 
+            teens in a fun and safe space! 
           </p>
         </div>
 
@@ -23,22 +25,22 @@ export function CommunityPage() {
             {
               icon: Users,
               title: '10K+',
-              description: 'Active Members',
+              description: 'Cool Friends',
             },
             {
               icon: MessageSquare,
               title: '5K+',
-              description: 'Daily Messages',
+              description: 'Daily Chats',
             },
             {
               icon: Heart,
               title: '500+',
-              description: 'Success Stories',
+              description: 'Happy Stories',
             },
             {
               icon: Trophy,
               title: '50+',
-              description: 'Support Groups',
+              description: 'Fun Groups',
             },
           ].map((stat, i) => (
             <motion.div
@@ -59,48 +61,92 @@ export function CommunityPage() {
 
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-lg border bg-card p-6">
-            <h2 className="mb-4 text-2xl font-semibold">Discussion Forums</h2>
+            <h2 className="mb-4 text-2xl font-semibold">Chat Rooms 💭</h2>
             <p className="mb-6 text-muted-foreground">
-              Join conversations on various topics related to mental health,
-              wellness, and personal growth.
+              Jump into fun conversations about things that matter to you - from school life 
+              to hobbies, we've got a space for everyone!
             </p>
             <div className="space-y-4">
-              {['Anxiety Support', 'Depression', 'Self-Care', 'Relationships'].map(
-                (forum, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between rounded-lg border p-4"
-                  >
-                    <div>
-                      <h3 className="font-medium">{forum}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {Math.floor(Math.random() * 100)} active discussions
-                      </p>
-                    </div>
-                    <Button variant="outline" size="sm">
-                      Join
-                    </Button>
+              {[
+                'Homework Heroes 📚',
+                'Friend Zone 👋',
+                'Self-Care Squad 🌈',
+                'Fun & Games 🎮'
+              ].map((forum, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between rounded-lg border p-4"
+                >
+                  <div>
+                    <h3 className="font-medium">{forum}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {Math.floor(Math.random() * 100)} friends chatting
+                    </p>
                   </div>
-                )
-              )}
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => navigate('/chat')}
+                  >
+                    Join In!
+                  </Button>
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="rounded-lg border bg-card p-6">
-            <h2 className="mb-4 text-2xl font-semibold">Community Guidelines</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-semibold">Community Rules 🤝</h2>
+              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Important!</span>
+            </div>
             <div className="space-y-4">
               <p className="text-muted-foreground">
-                Our community is built on respect, support, and understanding.
-                We maintain a safe space for everyone by following these guidelines:
+                Our community is a safe space where everyone belongs! Here's how we 
+                keep things awesome for all our amazing members:
               </p>
-              <ul className="ml-6 list-disc space-y-2 text-muted-foreground">
-                <li>Be respectful and supportive of others</li>
-                <li>Maintain confidentiality</li>
-                <li>No hate speech or bullying</li>
-                <li>Report inappropriate content</li>
-                <li>Share responsibly</li>
-              </ul>
-              <Button className="mt-4 w-full">Read Full Guidelines</Button>
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <h3 className="font-medium">Be Kind & Respectful 💝</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>Treat everyone with kindness and respect 🌟</li>
+                    <li>Celebrate our differences - they make us special! 🌈</li>
+                    <li>Use friendly language that makes everyone feel welcome 😊</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-medium">Stay Safe Online 🛡️</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>Keep your personal info private 🔒</li>
+                    <li>Never share passwords or contact details ⚠️</li>
+                    <li>Tell a trusted adult if something feels wrong 🚨</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-medium">Support Each Other 🤗</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>Listen to others with an open mind and heart 👂</li>
+                    <li>Share positive vibes and encouragement ✨</li>
+                    <li>Help others feel included in conversations 💭</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-medium">Keep it Friendly 🌺</h3>
+                  <ul className="ml-6 list-disc space-y-2 text-muted-foreground text-sm">
+                    <li>No bullying, hate speech, or mean comments ❌</li>
+                    <li>Respect everyone's background and culture 🌍</li>
+                    <li>Think before you post - would it make someone smile? 😊</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="pt-4">
+                <Button className="w-full">
+                  See Full Community Guidelines
+                </Button>
+              </div>
             </div>
           </div>
         </div>
