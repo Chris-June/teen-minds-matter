@@ -21,7 +21,7 @@ const router = {
   }
 };
 
-export default function App() {
+export function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>

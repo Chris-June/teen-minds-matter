@@ -20,7 +20,7 @@ export function ArticleCard({ article, index, onArticleClick }: ArticleCardProps
     >
       <div className="aspect-video w-full overflow-hidden">
         <img
-          src={article.imageUrl || `https://source.unsplash.com/random/800x600?${article.category}&sig=${index}`}
+          src={article.imageUrl || '/images/placeholders/article-placeholder.svg'}
           alt={`${article.title} thumbnail`}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />

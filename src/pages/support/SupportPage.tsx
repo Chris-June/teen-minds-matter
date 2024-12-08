@@ -48,12 +48,15 @@ export function SupportPage() {
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
               <Users className="h-6 w-6 text-primary" />
             </div>
-            <h2 className="mb-2 text-xl font-semibold">Meet Other Teens 👋</h2>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-xl font-semibold">Meet Other Teens 👋</h2>
+              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Coming Soon!</span>
+            </div>
             <p className="mb-4 text-muted-foreground">
-              Join fun group chats with other teens your age. Share stories, 
-              make friends, and learn cool ways to handle tough stuff together!
+              Connect with other teens in safe, moderated group chats. Share experiences,
+              make friends, and support each other through life's ups and downs.
             </p>
-            <Button variant="outline" className="w-full">Find Your Squad</Button>
+            <Button className="w-full" disabled>Join Community</Button>
           </motion.div>
         </div>
 

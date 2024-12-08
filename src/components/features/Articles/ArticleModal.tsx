@@ -94,8 +94,18 @@ export function ArticleModal({ article, onClose }: ArticleModalProps) {
           </div>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <ReactMarkdown>{article.content}</ReactMarkdown>
+          <div className="prose prose-lg prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-ul:text-muted-foreground max-w-none dark:prose-invert">
+            <ReactMarkdown
+              components={{
+                h1: (props) => <h1 className="text-3xl font-bold mb-6" {...props} />,
+                h2: (props) => <h2 className="text-2xl font-semibold mt-8 mb-4" {...props} />,
+                ul: (props) => <ul className="my-4 list-disc pl-6" {...props} />,
+                li: (props) => <li className="mb-2" {...props} />,
+                p: (props) => <p className="mb-4 leading-relaxed" {...props} />,
+              }}
+            >
+              {article.content}
+            </ReactMarkdown>
           </div>
 
           {/* Tags */}

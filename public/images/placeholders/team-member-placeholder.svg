@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e5e7eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d1d5db;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#grad)"/>
+  <circle cx="150" cy="120" r="45" fill="#9ca3af"/>
+  <path d="M150 180 Q 210 180 240 240 A 150 150 0 0 1 60 240 Q 90 180 150 180" fill="#9ca3af"/>
+  <text x="150" y="280" font-family="Arial" font-size="14" text-anchor="middle" fill="#6b7280">Team Member</text>
+</svg>

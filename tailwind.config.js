@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
@@ -39,6 +39,35 @@ export default {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            color: 'hsl(var(--foreground))',
+            h1: {
+              color: 'hsl(var(--foreground))',
+            },
+            h2: {
+              color: 'hsl(var(--foreground))',
+            },
+            h3: {
+              color: 'hsl(var(--foreground))',
+            },
+            h4: {
+              color: 'hsl(var(--foreground))',
+            },
+            p: {
+              color: 'hsl(var(--foreground))',
+            },
+            li: {
+              color: 'hsl(var(--foreground))',
+            },
+            strong: {
+              color: 'hsl(var(--foreground))',
+            },
+          },
+        },
+      },
       fontFamily: {
         sans: ['Inter var', 'sans-serif'],
       },
@@ -58,5 +87,8 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwindcss-animate'),
+  ],
 };

@@ -12,6 +12,7 @@ export const ResourcesPage: FC = () => {
       title: 'Need Someone to Talk To? 🗣️',
       description: 'Friendly people ready to listen anytime - day or night!',
       icon: Phone,
+      image: '/images/placeholders/resource-placeholder.svg',
       link: '#',
       type: 'emergency',
       content: {
@@ -42,6 +43,7 @@ export const ResourcesPage: FC = () => {
       title: 'Cool Tips & Tricks 📚',
       description: 'Awesome guides to help you deal with tough stuff',
       icon: Book,
+      image: '/images/placeholders/resource-placeholder.svg',
       link: '#',
       type: 'guide',
       content: {
@@ -72,6 +74,7 @@ export const ResourcesPage: FC = () => {
       title: 'Fun Activities 🎯',
       description: 'Games and exercises to boost your mood',
       icon: Download,
+      image: '/images/placeholders/resource-placeholder.svg',
       link: '#',
       type: 'workbook',
       content: {

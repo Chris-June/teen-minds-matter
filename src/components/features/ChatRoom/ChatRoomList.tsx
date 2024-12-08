@@ -10,6 +10,7 @@ interface ChatRoomData {
   description: string;
   activeUsers: number;
   category: string;
+  features?: string[];
   starred?: boolean;
 }
 
@@ -21,7 +22,8 @@ const CHAT_ROOMS: ChatRoomData[] = [
     emoji: '📚',
     description: 'Get help with homework and share study tips!',
     activeUsers: 42,
-    category: 'School'
+    category: 'School',
+    features: ['Peer Support', 'Study Groups', 'Quick Tips']
   },
   {
     id: 'test-prep-squad',
@@ -29,7 +31,8 @@ const CHAT_ROOMS: ChatRoomData[] = [
     emoji: '✏️',
     description: 'Study together and share exam strategies!',
     activeUsers: 28,
-    category: 'School'
+    category: 'School',
+    features: ['Study Plans', 'Practice Tests', 'Memory Tips']
   },
   
   // Friendship & Social
@@ -39,7 +42,8 @@ const CHAT_ROOMS: ChatRoomData[] = [
     emoji: '👋',
     description: 'Make new friends and chat about anything!',
     activeUsers: 78,
-    category: 'Social'
+    category: 'Social',
+    features: ['Games', 'Group Chat', 'Fun Topics']
   },
   {
     id: 'bff-corner',
@@ -47,113 +51,68 @@ const CHAT_ROOMS: ChatRoomData[] = [
     emoji: '🤝',
     description: 'Talk about friendship and being a good friend!',
     activeUsers: 45,
-    category: 'Social'
+    category: 'Social',
+    features: ['Friend Tips', 'Support Circle', 'Daily Topics']
   },
 
-  // Wellness & Support
+  // Mental Wellness
   {
-    id: 'self-care-squad',
-    name: 'Self-Care Squad',
-    emoji: '🌈',
-    description: 'Share self-care tips and support each other!',
-    activeUsers: 35,
-    category: 'Wellness'
+    id: 'stress-less',
+    name: 'Stress-Less Zone',
+    emoji: '🧘‍♂️',
+    description: 'Share tips and support for managing stress!',
+    activeUsers: 56,
+    category: 'Wellness',
+    features: ['Relaxation', 'Coping Skills', 'Daily Check-ins']
   },
   {
     id: 'positive-vibes',
     name: 'Positive Vibes',
     emoji: '✨',
-    description: 'Spread positivity and lift each other up!',
-    activeUsers: 52,
-    category: 'Wellness'
-  },
-  {
-    id: 'stress-free-zone',
-    name: 'Stress-Free Zone',
-    emoji: '🧘‍♀️',
-    description: 'Learn stress management techniques together!',
-    activeUsers: 31,
-    category: 'Wellness'
-  },
-
-  // Hobbies & Interests
-  {
-    id: 'creative-corner',
-    name: 'Creative Corner',
-    emoji: '🎨',
-    description: 'Share your art, writing, and creative projects!',
+    description: 'Spread positivity and share happy moments!',
     activeUsers: 63,
-    category: 'Hobbies'
+    category: 'Wellness',
+    features: ['Gratitude', 'Celebrations', 'Mood Boosters']
+  },
+
+  // Creative Corner
+  {
+    id: 'art-attack',
+    name: 'Art Attack',
+    emoji: '🎨',
+    description: 'Share your artwork and creative projects!',
+    activeUsers: 34,
+    category: 'Creative',
+    features: ['Art Sharing', 'Creative Tips', 'Daily Prompts']
   },
   {
-    id: 'music-hangout',
-    name: 'Music Hangout',
+    id: 'music-mashup',
+    name: 'Music Mashup',
     emoji: '🎵',
-    description: 'Talk about your favorite music and artists!',
-    activeUsers: 82,
-    category: 'Hobbies'
-  },
-  {
-    id: 'sports-club',
-    name: 'Sports Club',
-    emoji: '⚽',
-    description: 'Chat about sports, fitness, and staying active!',
-    activeUsers: 47,
-    category: 'Hobbies'
+    description: 'Chat about your favorite tunes and artists!',
+    activeUsers: 51,
+    category: 'Creative',
+    features: ['Song Recs', 'Genre Talk', 'Music News']
   },
 
-  // Fun & Games
+  // Gaming & Fun
   {
-    id: 'fun-and-games',
-    name: 'Fun & Games',
+    id: 'game-on',
+    name: 'Game On!',
     emoji: '🎮',
-    description: 'Chat about your favorite games and hobbies!',
-    activeUsers: 91,
-    category: 'Entertainment'
+    description: 'Talk about games and share gaming moments!',
+    activeUsers: 82,
+    category: 'Gaming',
+    features: ['Game Chat', 'Tips & Tricks', 'Achievement Share']
   },
   {
-    id: 'movie-buffs',
-    name: 'Movie Buffs',
-    emoji: '🎬',
-    description: 'Discuss movies, TV shows, and entertainment!',
-    activeUsers: 73,
-    category: 'Entertainment'
-  },
-
-  // Family & Life
-  {
-    id: 'family-matters',
-    name: 'Family Matters',
-    emoji: '👨‍👩‍👧‍👦',
-    description: 'Talk about family life and relationships!',
-    activeUsers: 39,
-    category: 'Life'
-  },
-  {
-    id: 'future-goals',
-    name: 'Future Goals',
-    emoji: '🎯',
-    description: 'Share your dreams and plan for the future!',
-    activeUsers: 44,
-    category: 'Life'
-  },
-
-  // Special Interest
-  {
-    id: 'book-club',
-    name: 'Book Club',
-    emoji: '📖',
-    description: 'Share book recommendations and discuss stories!',
-    activeUsers: 33,
-    category: 'Special'
-  },
-  {
-    id: 'science-explorers',
-    name: 'Science Explorers',
-    emoji: '🔬',
-    description: 'Explore cool science facts and discoveries!',
-    activeUsers: 29,
-    category: 'Special'
+    id: 'meme-team',
+    name: 'Meme Team',
+    emoji: '😂',
+    description: 'Share funny memes and laugh together!',
+    activeUsers: 94,
+    category: 'Fun',
+    features: ['Daily Memes', 'Joke Corner', 'Fun Challenges']
   }
 ];
 
@@ -343,6 +302,15 @@ export function ChatRoomList({ onRoomSelect }: ChatRoomListProps) {
                 <p className="text-sm text-muted-foreground mt-1">
                   {room.description}
                 </p>
+                {room.features && (
+                  <div className="flex flex-wrap gap-2 mt-2 text-sm text-muted-foreground">
+                    {room.features.map((feature) => (
+                      <span key={feature} className="bg-gray-100 rounded-full px-2 py-1">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <div className="flex items-center mt-2 text-sm text-muted-foreground">
                   <Users className="h-4 w-4 mr-1" />
                   <span>{room.activeUsers} online</span>
