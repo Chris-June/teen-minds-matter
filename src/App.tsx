@@ -47,14 +47,14 @@ export function App() {
                   <Route path="/about" element={<AboutPage />} />
                   
                   {/* Chatroom Routes */}
-                  <Route path="/chatrooms/homework-heroes" element={<HomeworkHeroes />} />
-                  <Route path="/chatrooms/friend-zone" element={<FriendZone />} />
-                  <Route path="/chatrooms/stress-less" element={<StressLess />} />
-                  <Route path="/chatrooms/positive-vibes" element={<PositiveVibes />} />
-                  <Route path="/chatrooms/art-attack" element={<ArtAttack />} />
-                  <Route path="/chatrooms/music-mashup" element={<MusicMashup />} />
-                  <Route path="/chatrooms/game-on" element={<GameOn />} />
-                  <Route path="/chatrooms/meme-team" element={<MemeTeam />} />
+                  <Route path="/chat/homework-heroes" element={<HomeworkHeroes />} />
+                  <Route path="/chat/friend-zone" element={<FriendZone />} />
+                  <Route path="/chat/stress-less" element={<StressLess />} />
+                  <Route path="/chat/positive-vibes" element={<PositiveVibes />} />
+                  <Route path="/chat/art-attack" element={<ArtAttack />} />
+                  <Route path="/chat/music-mashup" element={<MusicMashup />} />
+                  <Route path="/chat/game-on" element={<GameOn />} />
+                  <Route path="/chat/meme-team" element={<MemeTeam />} />
                 </Routes>
               </main>
             </div>
