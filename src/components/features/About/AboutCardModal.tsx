@@ -36,7 +36,11 @@ export const AboutCardModal: FC<AboutCardModalProps> = ({
             <DialogTitle className="text-2xl font-bold">{content.title}</DialogTitle>
           </div>
         </DialogHeader>
-        
+        <DialogDescription>
+          <p className="text-muted-foreground leading-relaxed">
+            This section provides detailed information about the importance and impact of the topic.
+          </p>
+        </DialogDescription>
         <div className="mt-6 space-y-6">
           <div>
             <h3 className="mb-2 text-lg font-semibold text-primary">Why It's Important to Us</h3>

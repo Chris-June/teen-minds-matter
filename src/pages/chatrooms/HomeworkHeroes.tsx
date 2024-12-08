@@ -1,6 +1,6 @@
 import { ChatRoomTemplate } from '@/components/features/ChatRoom/ChatRoomTemplate';
 
-export function HomeworkHeroesRoom() {
+export function HomeworkHeroes() {
   return (
     <ChatRoomTemplate
       roomName="Homework Heroes"
@@ -8,6 +8,7 @@ export function HomeworkHeroesRoom() {
       description="Team up with other students to conquer homework together! Share tips, get help, and celebrate those A+'s! 🌟"
       category="School"
       mood="Supportive & Encouraging"
+      features={['Study Help', 'Peer Support', 'Quick Tips']}
       rules={[
         "Be kind and patient - everyone learns differently! 🤝",
         "No sharing test answers or cheating - that's not cool! ❌",

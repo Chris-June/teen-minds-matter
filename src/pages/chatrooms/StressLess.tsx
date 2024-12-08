@@ -1,19 +1,20 @@
 import { ChatRoomTemplate } from '@/components/features/ChatRoom/ChatRoomTemplate';
 
-export function StressLessRoom() {
+export function StressLess() {
   return (
     <ChatRoomTemplate
       roomName="Stress-Less Zone"
       emoji="🧘‍♂️"
-      description="Chill spot to share what's on your mind and learn cool ways to deal with stress! Take a deep breath - you've got this! 🌺"
+      description="Your calm corner to unwind, share feelings, and learn stress-busting techniques together."
       category="Wellness"
       mood="Calm & Supportive"
+      features={['Relaxation Tips', 'Peer Support', 'Daily Check-ins']}
       rules={[
-        "Listen and support - we're all here to help! 🤗",
-        "Share positive coping strategies - what works for you? 💫",
-        "No judging - everyone's feelings are valid! 💝",
-        "Keep it real but keep it hopeful! 🌈",
-        "Remember to take care of yourself first! 🌱"
+        "Listen with empathy and understanding 🫂",
+        "Share coping strategies that work for you 💭",
+        "Respect everyone's feelings and experiences 🌟",
+        "Keep a positive and supportive atmosphere 🌈",
+        "Remember: it's okay to not be okay 💗"
       ]}
     />
   );

@@ -2,9 +2,15 @@ import { motion } from 'framer-motion';
 import { Users, MessageSquare, Heart, Trophy } from 'lucide-react';
 import { Button } from '@/components/common/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import { ChatRoomList } from '@/components/features/ChatRoom/ChatRoomList';
 
 export function CommunityPage() {
   const navigate = useNavigate();
+
+  const handleRoomSelect = (room: any) => {
+    navigate(`/chat/${room.id}`);
+  };
+
   return (
     <div className="container mx-auto px-4 pt-20 pb-8">
       <motion.div
@@ -66,33 +72,7 @@ export function CommunityPage() {
               Jump into fun conversations about things that matter to you - from school life 
               to hobbies, we've got a space for everyone!
             </p>
-            <div className="space-y-4">
-              {[
-                'Homework Heroes 📚',
-                'Friend Zone 👋',
-                'Self-Care Squad 🌈',
-                'Fun & Games 🎮'
-              ].map((forum, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-between rounded-lg border p-4"
-                >
-                  <div>
-                    <h3 className="font-medium">{forum}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {Math.floor(Math.random() * 100)} friends chatting
-                    </p>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => navigate('/chat')}
-                  >
-                    Join In!
-                  </Button>
-                </div>
-              ))}
-            </div>
+            <ChatRoomList onRoomSelect={handleRoomSelect} />
           </div>
 
           <div className="rounded-lg border bg-card p-6">

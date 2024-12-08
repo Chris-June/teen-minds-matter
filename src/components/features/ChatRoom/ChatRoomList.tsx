@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../../components/common/ui/Button';
 import { Users, Star, StarOff, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface ChatRoomData {
   id: string;
@@ -12,6 +13,8 @@ interface ChatRoomData {
   category: string;
   features?: string[];
   starred?: boolean;
+  mood: string;
+  rules: string[];
 }
 
 const CHAT_ROOMS: ChatRoomData[] = [
@@ -20,99 +23,138 @@ const CHAT_ROOMS: ChatRoomData[] = [
     id: 'homework-heroes',
     name: 'Homework Heroes',
     emoji: '📚',
-    description: 'Get help with homework and share study tips!',
+    description:
+      'Team up with other students to conquer homework together! Share tips, get help, and celebrate those A+\'s! 🌟',
     activeUsers: 42,
     category: 'School',
-    features: ['Peer Support', 'Study Groups', 'Quick Tips']
+    mood: 'Supportive & Encouraging',
+    features: ['Study Help', 'Peer Support', 'Quick Tips'],
+    rules: [
+      "Be kind and patient - everyone learns differently! 🤝",
+      "No sharing test answers or cheating - that's not cool! ❌",
+      "Celebrate others' successes - we're all in this together! 🎉",
+      "Keep it school-appropriate - let's stay focused! 📝",
+      "Share study tips and resources that worked for you! 💡"
+    ]
   },
-  {
-    id: 'test-prep-squad',
-    name: 'Test Prep Squad',
-    emoji: '✏️',
-    description: 'Study together and share exam strategies!',
-    activeUsers: 28,
-    category: 'School',
-    features: ['Study Plans', 'Practice Tests', 'Memory Tips']
-  },
-  
-  // Friendship & Social
   {
     id: 'friend-zone',
     name: 'Friend Zone',
     emoji: '👋',
-    description: 'Make new friends and chat about anything!',
+    description: 'Make new friends and chat about anything! This is your space to connect, share stories, and build awesome friendships.',
     activeUsers: 78,
     category: 'Social',
-    features: ['Games', 'Group Chat', 'Fun Topics']
+    mood: 'Friendly & Welcoming',
+    features: ['Group Chat', 'Fun Topics', 'Friend Matching'],
+    rules: [
+      "Be friendly and welcoming to everyone! 😊",
+      "Respect personal boundaries and privacy 🛡️",
+      "Keep conversations appropriate and inclusive 🌈",
+      "No bullying or mean comments - spread kindness! ❤️",
+      "Have fun and be yourself! 🎉"
+    ]
   },
-  {
-    id: 'bff-corner',
-    name: 'BFF Corner',
-    emoji: '🤝',
-    description: 'Talk about friendship and being a good friend!',
-    activeUsers: 45,
-    category: 'Social',
-    features: ['Friend Tips', 'Support Circle', 'Daily Topics']
-  },
-
-  // Mental Wellness
   {
     id: 'stress-less',
     name: 'Stress-Less Zone',
     emoji: '🧘‍♂️',
-    description: 'Share tips and support for managing stress!',
+    description: 'Your calm corner to unwind, share feelings, and learn stress-busting techniques together.',
     activeUsers: 56,
     category: 'Wellness',
-    features: ['Relaxation', 'Coping Skills', 'Daily Check-ins']
+    mood: 'Calm & Supportive',
+    features: ['Relaxation Tips', 'Peer Support', 'Daily Check-ins'],
+    rules: [
+      "Listen with empathy and understanding 🫂",
+      "Share coping strategies that work for you 💭",
+      "Respect everyone's feelings and experiences 🌟",
+      "Keep a positive and supportive atmosphere 🌈",
+      "Remember: it's okay to not be okay 💗"
+    ]
   },
   {
     id: 'positive-vibes',
     name: 'Positive Vibes',
     emoji: '✨',
-    description: 'Spread positivity and share happy moments!',
+    description: 'Your daily dose of happiness! Share good news, celebrate wins (big or small), and spread joy together.',
     activeUsers: 63,
     category: 'Wellness',
-    features: ['Gratitude', 'Celebrations', 'Mood Boosters']
+    mood: 'Uplifting & Joyful',
+    features: ['Gratitude Wall', 'Daily Wins', 'Mood Boosters'],
+    rules: [
+      "Share positivity and encourage others 🌟",
+      "Celebrate all victories, big and small! 🎉",
+      "Be genuine and supportive in your responses 💖",
+      "Keep the energy uplifting and inspiring ✨",
+      "Help others see the bright side 🌈"
+    ]
   },
-
-  // Creative Corner
   {
     id: 'art-attack',
     name: 'Art Attack',
     emoji: '🎨',
-    description: 'Share your artwork and creative projects!',
+    description: 'Express yourself through art! Share your creations, get inspired, and discover your inner artist.',
     activeUsers: 34,
     category: 'Creative',
-    features: ['Art Sharing', 'Creative Tips', 'Daily Prompts']
+    mood: 'Creative & Inspiring',
+    features: ['Art Sharing', 'Creative Tips', 'Daily Prompts'],
+    rules: [
+      "Respect all art styles and skill levels 🎨",
+      "Give constructive and kind feedback 💭",
+      "Credit others' work when sharing 🌟",
+      "Keep content appropriate for all ages 🎯",
+      "Encourage creativity in all forms! ✨"
+    ]
   },
   {
     id: 'music-mashup',
     name: 'Music Mashup',
     emoji: '🎵',
-    description: 'Chat about your favorite tunes and artists!',
+    description: 'Your musical hangout! Share favorite songs, discover new tunes, and connect through the power of music.',
     activeUsers: 51,
     category: 'Creative',
-    features: ['Song Recs', 'Genre Talk', 'Music News']
+    mood: 'Energetic & Fun',
+    features: ['Song Sharing', 'Genre Talk', 'Music News'],
+    rules: [
+      "Respect all music tastes and genres 🎵",
+      "Keep song recommendations age-appropriate 🎧",
+      "Credit artists when sharing music 🎼",
+      "Be open to different musical styles 🌍",
+      "Share what music means to you! 💖"
+    ]
   },
-
-  // Gaming & Fun
   {
     id: 'game-on',
     name: 'Game On!',
     emoji: '🎮',
-    description: 'Talk about games and share gaming moments!',
+    description: 'Level up your gaming experience! Share gaming moments, find teammates, and have fun playing together.',
     activeUsers: 82,
     category: 'Gaming',
-    features: ['Game Chat', 'Tips & Tricks', 'Achievement Share']
+    mood: 'Exciting & Competitive',
+    features: ['Game Chat', 'Team Building', 'Gaming Tips'],
+    rules: [
+      "Keep gaming discussions friendly and fun 🎮",
+      "No spoilers without warnings ⚠️",
+      "Respect different gaming preferences 🎲",
+      "Be a good sport - win or lose! 🏆",
+      "Help new gamers feel welcome 🤝"
+    ]
   },
   {
     id: 'meme-team',
     name: 'Meme Team',
     emoji: '😂',
-    description: 'Share funny memes and laugh together!',
+    description: 'Your daily dose of laughter! Share funny memes, jokes, and spread happiness through humor.',
     activeUsers: 94,
     category: 'Fun',
-    features: ['Daily Memes', 'Joke Corner', 'Fun Challenges']
+    mood: 'Playful & Humorous',
+    features: ['Meme Sharing', 'Joke Corner', 'Fun Challenges'],
+    rules: [
+      "Keep memes and jokes appropriate 😊",
+      "No offensive or mean-spirited content ❌",
+      "Credit original creators when possible 🎨",
+      "Spread laughter, not negativity 🌟",
+      "Have fun and make others smile! 😄"
+    ]
   }
 ];
 
@@ -121,6 +163,7 @@ interface ChatRoomListProps {
 }
 
 export function ChatRoomList({ onRoomSelect }: ChatRoomListProps) {
+  const navigate = useNavigate();
   const [rooms, setRooms] = useState<ChatRoomData[]>(CHAT_ROOMS);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showStarredOnly, setShowStarredOnly] = useState(false);
@@ -275,7 +318,11 @@ export function ChatRoomList({ onRoomSelect }: ChatRoomListProps) {
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
             whileHover={{ scale: 1.02 }}
-            className="rounded-lg border bg-card p-4 transition-colors hover:bg-accent"
+            className="group relative rounded-lg border bg-card p-6 transition-all hover:border-primary"
+            onClick={() => {
+              navigate(`/chatrooms/${room.id}`);
+              onRoomSelect(room);
+            }}
           >
             <div className="flex items-start justify-between">
               <div>

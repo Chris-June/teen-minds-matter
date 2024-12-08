@@ -1,20 +1,20 @@
 import { ChatRoomTemplate } from '@/components/features/ChatRoom/ChatRoomTemplate';
 
-export function MemeTeamRoom() {
+export function MemeTeam() {
   return (
     <ChatRoomTemplate
       roomName="Meme Team"
       emoji="😂"
-      description="Your daily dose of LOLs! Share funny memes, jokes, and spread the laughter!"
+      description="Your daily dose of laughter! Share funny memes, jokes, and spread happiness through humor."
       category="Fun"
-      mood="Hilarious & Light"
-      features={['Daily Memes', 'Joke Corner', 'Fun Challenges']}
+      mood="Playful & Humorous"
+      features={['Meme Sharing', 'Joke Corner', 'Fun Challenges']}
       rules={[
-        "Keep memes clean and kind! 😊",
-        "No offensive or mean jokes! 🚫",
-        "Give credit to meme creators! 🎨",
-        "Keep it age-appropriate! 👍",
-        "Spread laughter, not hate! 💖"
+        "Keep memes and jokes appropriate 😊",
+        "No offensive or mean-spirited content ❌",
+        "Credit original creators when possible 🎨",
+        "Spread laughter, not negativity 🌟",
+        "Have fun and make others smile! 😄"
       ]}
     />
   );

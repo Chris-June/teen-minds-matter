@@ -10,6 +10,14 @@ import { CommunityPage } from '@/pages/community/CommunityPage';
 import { AboutPage } from '@/pages/about/AboutPage';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { ToastProvider, ToastViewport } from '@/components/common/ui/Toast';
+import { HomeworkHeroes } from '@/pages/chatrooms/HomeworkHeroes';
+import { FriendZone } from '@/pages/chatrooms/FriendZone';
+import { StressLess } from '@/pages/chatrooms/StressLess';
+import { PositiveVibes } from '@/pages/chatrooms/PositiveVibes';
+import { ArtAttack } from '@/pages/chatrooms/ArtAttack';
+import { MusicMashup } from '@/pages/chatrooms/MusicMashup';
+import { GameOn } from '@/pages/chatrooms/GameOn';
+import { MemeTeam } from '@/pages/chatrooms/MemeTeam';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +45,16 @@ export function App() {
                   <Route path="/support" element={<SupportPage />} />
                   <Route path="/community" element={<CommunityPage />} />
                   <Route path="/about" element={<AboutPage />} />
+                  
+                  {/* Chatroom Routes */}
+                  <Route path="/chatrooms/homework-heroes" element={<HomeworkHeroes />} />
+                  <Route path="/chatrooms/friend-zone" element={<FriendZone />} />
+                  <Route path="/chatrooms/stress-less" element={<StressLess />} />
+                  <Route path="/chatrooms/positive-vibes" element={<PositiveVibes />} />
+                  <Route path="/chatrooms/art-attack" element={<ArtAttack />} />
+                  <Route path="/chatrooms/music-mashup" element={<MusicMashup />} />
+                  <Route path="/chatrooms/game-on" element={<GameOn />} />
+                  <Route path="/chatrooms/meme-team" element={<MemeTeam />} />
                 </Routes>
               </main>
             </div>

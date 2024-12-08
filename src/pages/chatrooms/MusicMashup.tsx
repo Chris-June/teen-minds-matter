@@ -1,20 +1,20 @@
 import { ChatRoomTemplate } from '@/components/features/ChatRoom/ChatRoomTemplate';
 
-export function MusicMashupRoom() {
+export function MusicMashup() {
   return (
     <ChatRoomTemplate
       roomName="Music Mashup"
       emoji="🎵"
-      description="Your spot to vibe with other music lovers! Share your playlist gems, discover new tunes, and chat about all things music!"
+      description="Your musical hangout! Share favorite songs, discover new tunes, and connect through the power of music."
       category="Creative"
-      mood="Energetic & Melodic"
-      features={['Song Recs', 'Genre Talk', 'Music News']}
+      mood="Energetic & Fun"
+      features={['Song Sharing', 'Genre Talk', 'Music News']}
       rules={[
-        "Share your favorite tunes (keep it clean!) 🎵",
-        "Respect different music tastes! 🤘",
-        "No hate on artists or genres! ❤️",
-        "Give content warnings when needed! ⚡",
-        "Keep discussions music-focused! 🎧"
+        "Respect all music tastes and genres 🎵",
+        "Keep song recommendations age-appropriate 🎧",
+        "Credit artists when sharing music 🎼",
+        "Be open to different musical styles 🌍",
+        "Share what music means to you! 💖"
       ]}
     />
   );

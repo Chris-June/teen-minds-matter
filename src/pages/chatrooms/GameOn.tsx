@@ -1,20 +1,20 @@
 import { ChatRoomTemplate } from '@/components/features/ChatRoom/ChatRoomTemplate';
 
-export function GameOnRoom() {
+export function GameOn() {
   return (
     <ChatRoomTemplate
       roomName="Game On!"
       emoji="🎮"
-      description="Level up your gaming experience! Share epic gaming moments, get tips, and connect with fellow gamers!"
+      description="Level up your gaming experience! Share gaming moments, find teammates, and have fun playing together."
       category="Gaming"
-      mood="Fun & Competitive"
-      features={['Game Chat', 'Tips & Tricks', 'Achievement Share']}
+      mood="Exciting & Competitive"
+      features={['Game Chat', 'Team Building', 'Gaming Tips']}
       rules={[
-        "Keep it friendly - we're all here to have fun! 🎮",
-        "No spoilers without warnings! 🚫",
-        "Be supportive of all skill levels! 🌟",
-        "Keep conversations age-appropriate! 🎯",
-        "Share tips and help others improve! 💪"
+        "Keep gaming discussions friendly and fun 🎮",
+        "No spoilers without warnings ⚠️",
+        "Respect different gaming preferences 🎲",
+        "Be a good sport - win or lose! 🏆",
+        "Help new gamers feel welcome 🤝"
       ]}
     />
   );
